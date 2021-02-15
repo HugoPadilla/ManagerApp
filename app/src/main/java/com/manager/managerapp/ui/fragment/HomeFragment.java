@@ -26,8 +26,8 @@ import com.manager.managerapp.ui.adapter.recyclerViewHomeAdapter;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel viewModel;
-    private HomeFragmentBinding binding;
+    private HomeViewModel homeViewModel;
+    private HomeFragmentBinding homeFragmentBinding;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -36,19 +36,19 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = HomeFragmentBinding.inflate(inflater, container, false);
-        binding.setLifecycleOwner(this);
+        homeFragmentBinding = HomeFragmentBinding.inflate(inflater, container, false);
+        homeFragmentBinding.setLifecycleOwner(this);
 
         Toast.makeText(getActivity(), "onCreateView", Toast.LENGTH_SHORT).show();
 
-        return binding.getRoot();
+        return homeFragmentBinding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
-        binding.setViewModel(viewModel);
+        homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
+        homeFragmentBinding.setViewModel(homeViewModel);
         // TODO: Use the ViewModel
         recyclerViewConfing();
         observerViewModel();
@@ -82,23 +82,23 @@ public class HomeFragment extends Fragment {
 
 
     private void observerViewModel() {
-        /*mViewModel.get_isEmpty().observe(getActivity(), new Observer<Boolean>() {
+        homeViewModel.get_isEmpty().observe(getActivity(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean){
-                    viewBinding.imageView.setVisibility(View.VISIBLE);
+                    homeFragmentBinding.imageView.setVisibility(View.VISIBLE);
                 } else {
-                    viewBinding.imageView.setVisibility(View.GONE);
+                    homeFragmentBinding.imageView.setVisibility(View.GONE);
                 }
             }
-        });*/
+        });
     }
 
     private void listenerViewConfig() {
-        binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        homeFragmentBinding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.setBoolean();
+                homeViewModel.setBoolean();
                 /*BottomSheetDialog mSheetDialog = new BottomSheetDialog();
                 mSheetDialog.show(getActivity().getSupportFragmentManager(), "showBottomSheetDiaolog");*/
             }
@@ -110,8 +110,8 @@ public class HomeFragment extends Fragment {
         FirestoreRecyclerOptions<Email> options = new FirestoreRecyclerOptions.Builder<Email>().setLifecycleOwner(this).setQuery(query, Email.class).build();
         // RecyclerView manager and adapter
         recyclerViewHomeAdapter recyclerViewHomeAdapter = new recyclerViewHomeAdapter(options);
-        binding.recyclerViewHome.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.recyclerViewHome.setAdapter(recyclerViewHomeAdapter);
+        homeFragmentBinding.recyclerViewHome.setLayoutManager(new LinearLayoutManager(getActivity()));
+        homeFragmentBinding.recyclerViewHome.setAdapter(recyclerViewHomeAdapter);
 
     }
 

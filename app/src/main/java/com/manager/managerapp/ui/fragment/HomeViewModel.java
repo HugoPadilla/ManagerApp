@@ -12,6 +12,7 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<Boolean> _isEmpty;
 
     public HomeViewModel() {
+        // Init Variable MutableLiveData
         get_isEmpty();
     }
 

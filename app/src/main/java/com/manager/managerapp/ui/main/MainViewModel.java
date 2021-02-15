@@ -7,13 +7,13 @@ import com.manager.managerapp.repository.repositoryFirebase;
 
 public class MainViewModel extends ViewModel {
 
-    private repositoryFirebase mRepository;
+    private final repositoryFirebase repositoryFirebase;
 
     public MainViewModel() {
-        mRepository = new repositoryFirebase();
+        this.repositoryFirebase = new repositoryFirebase();
     }
 
     public void addEmailVinculado(Email email) {
-        mRepository.addEmailVinculado(email);
+        repositoryFirebase.addEmailVinculado(email);
     }
 }

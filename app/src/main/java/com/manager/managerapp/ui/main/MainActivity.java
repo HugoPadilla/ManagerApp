@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
                 ,R.id.perfilFragment)
                 .build();
         // instance navController con la referencia del hotFragment
+        // esto configura la toolbar y la navegación inferior con navigationUi
         NavController navController = Navigation.findNavController(this,R.id.fragment);
         NavigationUI.setupWithNavController(binding.toolbar,navController,appBarConfiguration);
         NavigationUI.setupWithNavController(binding.bottomNavigationView,navController);
